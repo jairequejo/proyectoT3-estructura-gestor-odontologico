@@ -1,5 +1,6 @@
 ﻿using System;
 using Clases;
+using Clases.ClasesCitas;
 
 namespace PruebasConsola
 {
@@ -9,6 +10,7 @@ namespace PruebasConsola
         {
             ListaEnlazadaDoble listaPacientes = new ListaEnlazadaDoble();
             Cola colaCitas = new Cola();
+            Pila pilaTratamientos = new Pila();
 
             int opcion;
             do
@@ -19,12 +21,14 @@ namespace PruebasConsola
                 Console.WriteLine("2. Mostrar Pacientes");
                 Console.WriteLine("3. Buscar Paciente por DNI");
                 Console.WriteLine("4. Registrar Cita");
-                Console.WriteLine("5. Mostrar Citas");
-                Console.WriteLine("6. Registrar Tratamiento");
-                Console.WriteLine("7. Mostrar Historial de un Paciente");
-                Console.WriteLine("8. Atender siguiente Cita");
+                Console.WriteLine("5. Mostrar Citas de Hoy");
+                Console.WriteLine("6. Mostrar Citas por Fecha");
+                Console.WriteLine("7. Mostrar Todas las Citas");
+                Console.WriteLine("8. Registrar Tratamiento");
+                Console.WriteLine("9. Mostrar Historial de un Paciente");
+                Console.WriteLine("10. Atender siguiente Cita");
                 Console.WriteLine("0. Salir");
-                Console.Write("Seleccione una opción: ");
+                Console.Write("\nSeleccione una opción: ");
 
                 if (!int.TryParse(Console.ReadLine(), out opcion)) opcion = -1;
                 Console.Clear();
@@ -45,23 +49,34 @@ namespace PruebasConsola
                         break;
 
                     case 4:
-                        RegistrarCita(colaCitas);
+                        RegistrarCita(colaCitas, listaPacientes);
                         break;
 
                     case 5:
-                        Console.WriteLine("=== Citas Registradas ===");
-                        colaCitas.MostrarColaConsola();
+                        Console.WriteLine("=== Citas de Hoy ===");
+                        colaCitas.MostrarCitasDeHoy();
                         break;
 
                     case 6:
-                        RegistrarTratamiento(listaPacientes);
+                        Console.Write("Ingrese la fecha (YYYY-MM-DD): ");
+                        DateTime fecha = DateTime.Parse(Console.ReadLine());
+                        colaCitas.MostrarPorFecha(fecha);
                         break;
 
                     case 7:
-                        MostrarHistorialPaciente(listaPacientes);
+                        Console.WriteLine("=== Todas las Citas ===");
+                        colaCitas.MostrarCitasGenerales();
                         break;
 
                     case 8:
+                        RegistrarTratamiento(listaPacientes);
+                        break;
+
+                    case 9:
+                        MostrarHistorialPaciente(listaPacientes);
+                        break;
+
+                    case 10:
                         AtenderCita(listaPacientes, colaCitas);
                         break;
 
@@ -128,13 +143,57 @@ namespace PruebasConsola
             }
         }
 
-        static void RegistrarCita(Cola cola)
+        static void RegistrarCita(Cola cola, ListaEnlazadaDoble listaPacientes)
         {
             Console.WriteLine("=== Registro de Cita ===");
-            Console.Write("DNI del Paciente: ");
-            int dni = int.Parse(Console.ReadLine());
-            Console.Write("Nombre: ");
-            string nombre = Console.ReadLine();
+
+            int dni;
+            string nombre = "";
+
+            while (true)
+            {
+                Console.Write("DNI del Paciente: ");
+                dni = int.Parse(Console.ReadLine());
+
+                var pacienteExistente = listaPacientes.Buscar(dni);
+
+                if (pacienteExistente != null)
+                {
+                    Console.WriteLine($">> Paciente encontrado: {pacienteExistente.Nombre} {pacienteExistente.Apellido}");
+                    Console.Write("¿Desea registrar la cita para este paciente? (s/n): ");
+                    string resp = Console.ReadLine().ToLower();
+
+                    if (resp == "s")
+                    {
+                        nombre = $"{pacienteExistente.Nombre} {pacienteExistente.Apellido}";
+                        break; // sale del bucle, ya se confirmó el paciente correcto
+                    }
+                    else
+                    {
+                        Console.WriteLine(">< DNI incorrecto, intente nuevamente.\n");
+                        continue; // vuelve a pedir el DNI
+                    }
+                }
+                else
+                {
+                    Console.WriteLine(">< Paciente no registrado.");
+                    Console.Write("¿Desea registrarlo temporalmente para esta cita? (s/n): ");
+                    string resp = Console.ReadLine().ToLower();
+
+                    if (resp == "s")
+                    {
+                        Console.Write("Nombre: ");
+                        nombre = Console.ReadLine();
+                        break; // sale del bucle con los datos ingresados manualmente
+                    }
+                    else
+                    {
+                        Console.WriteLine(">< Reintentando ingreso del DNI...\n");
+                    }
+                }
+            }
+
+            // Resto de datos de la cita
             Console.Write("Motivo: ");
             string motivo = Console.ReadLine();
             Console.Write("Fecha (YYYY-MM-DD): ");
@@ -146,6 +205,8 @@ namespace PruebasConsola
             cola.Encolar(nuevaCita);
             Console.WriteLine(">>> Cita registrada correctamente.");
         }
+
+
 
         static void RegistrarTratamiento(ListaEnlazadaDoble listaPacientes)
         {
@@ -201,7 +262,7 @@ namespace PruebasConsola
                 return;
             }
 
-            Console.WriteLine($"Atendiendo cita: {cita.DNI} - {cita.Nombre} | Motivo: {cita.Motivo}" );
+            Console.WriteLine($"Atendiendo cita: {cita.DNI} - {cita.Nombre} | Motivo: {cita.Motivo}");
             var paciente = listaPacientes.Buscar(cita.DNI);
 
             if (paciente == null)

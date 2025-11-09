@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace GUI
 {
-    public partial class Form1 : Form
+
+    public partial class AgendaClientesUserControl : UserControl
     {
-        public Form1()
+        public AgendaClientesUserControl()
         {
             InitializeComponent();
+        }
+        private void btnPresentarCola_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

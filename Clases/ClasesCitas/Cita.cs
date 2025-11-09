@@ -30,7 +30,7 @@ namespace Clases
 
         public override string ToString()
         {
-            return $">>> {DNI} - {Nombre}\n     Motivo: {Motivo} - Fecha: {Fecha} - Preferencial: {EsPreferencial}";
+            return $">>> Fecha: {Fecha.Date} Cliente: {DNI} - {Nombre}\n    | Motivo: {Motivo} - Preferencial: {EsPreferencial}";
         }
     }
 }

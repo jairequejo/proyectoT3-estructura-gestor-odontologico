@@ -9,53 +9,59 @@ namespace Clases
 {
     public class Cola
     {
+        /// Cola con prioridad jerárquica:
+        /// 1. Prioridad automática por fecha (más próxima primero)
+        /// 2. Prioridad manual por preferencialidad del paciente
+        /// 3. En caso de empate, se respeta el orden de llegada (FIFO)
+
         public NodoCola Primero = null;
         public NodoCola Ultimo = null;
 
         public void Encolar(Cita p)
         {
-            //1. Crear nuevo Nodo
-            NodoCola nodoNuevo = new NodoCola(p);
+            NodoCola nuevo = new NodoCola(p);
 
-            //2. encolar
+            // Caso base: cola vacía
             if (Primero == null)
             {
-                Primero = nodoNuevo;
-                Ultimo = nodoNuevo;
+                Primero = Ultimo = nuevo;
+                return;
             }
-            else
+
+            // Si la cita es más próxima que la primera
+            if (p.Fecha < Primero.Dato.Fecha ||
+               (p.Fecha == Primero.Dato.Fecha && p.EsPreferencial && !Primero.Dato.EsPreferencial))
             {
-                // Cola Preferencial
-                if (p.EsPreferencial)
-                {
-                    if (Primero.Dato.EsPreferencial)
-                    {
-                        // Se compila despues del ultimo preferencial
-                        NodoCola aux = Primero;
-                        while (aux.Siguiente != null && aux.Siguiente.Dato.EsPreferencial)
-                        {
-                            aux = aux.Siguiente;
-                        }
-
-                        // Auxiliar ya es igual al ultimo preferencial
-
-                        nodoNuevo.Siguiente = aux.Siguiente;
-                        aux.Siguiente = nodoNuevo;
-                    }
-                    else
-                    {
-                        // El nuevo es preferencial y el frente no, se encola al frente
-                        nodoNuevo.Siguiente = Primero;
-                        Primero = nodoNuevo;
-                    }
-                }
-                else
-                {
-                    Ultimo.Siguiente = nodoNuevo;
-                    Ultimo = nodoNuevo;
-                }
+                nuevo.Siguiente = Primero;
+                Primero = nuevo;
+                return;
             }
+
+            // Buscar la posición adecuada
+            NodoCola actual = Primero;
+            while (actual.Siguiente != null)
+            {
+                Cita siguiente = actual.Siguiente.Dato;
+
+                // Si la nueva cita es antes que la siguiente
+                if (p.Fecha < siguiente.Fecha)
+                    break;
+
+                // Si es el mismo día pero preferencial y el siguiente no lo es
+                if (p.Fecha == siguiente.Fecha && p.EsPreferencial && !siguiente.EsPreferencial)
+                    break;
+
+                actual = actual.Siguiente;
+            }
+
+            // Insertar en la posición encontrada
+            nuevo.Siguiente = actual.Siguiente;
+            actual.Siguiente = nuevo;
+
+            if (nuevo.Siguiente == null)
+                Ultimo = nuevo;
         }
+
 
         public Cita Desencolar()
         {
@@ -98,5 +104,42 @@ namespace Clases
                 indice++;
             }
         }
+        public void MostrarCitasDeHoy()
+        {
+            Console.WriteLine("=== Citas de Hoy ===");
+            DateTime hoy = DateTime.Today;
+            MostrarPorFecha(hoy);
+        }
+
+        public void MostrarPorFecha(DateTime fecha)
+        {
+            bool encontrado = false;
+            NodoCola aux = Primero;
+
+            while (aux != null)
+            {
+                if (aux.Dato.Fecha.Date == fecha.Date)
+                {
+                    Console.WriteLine(aux.Dato);
+                    encontrado = true;
+                }
+                aux = aux.Siguiente;
+            }
+
+            if (!encontrado)
+                Console.WriteLine("No hay citas en esa fecha.");
+        }
+
+        public void MostrarCitasGenerales()
+        {
+            Console.WriteLine("=== Todas las Citas ===");
+            NodoCola aux = Primero;
+            while (aux != null)
+            {
+                Console.WriteLine(aux.Dato);
+                aux = aux.Siguiente;
+            }
+        }
+
     }
 }
