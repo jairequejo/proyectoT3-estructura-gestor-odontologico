@@ -7,16 +7,31 @@ namespace Clases
         public int DNI;
         public string Apellido;
         public string Nombre;
-        public int Edad;
+        public DateTime FechaNacimiento;
+        public int Edad
+        {
+            get
+            {
+                // Calcula la diferencia de años
+                int edad = DateTime.Today.Year - FechaNacimiento.Year;
+
+                // Resta 1 si aún no ha cumplido años este año.
+                if (FechaNacimiento.Date > DateTime.Today.AddYears(-edad))
+                {
+                    edad--;
+                }
+                return edad;
+            }
+        }
         public int Telefono;
         public Pila HistorialTratamientos; // Pila para el historial
 
-        public Paciente(int dNI, string apellido, string nombre, int edad, int telefono)
+        public Paciente(int dNI, string apellido, string nombre, DateTime fechaNacimiento, int telefono)
         {
             DNI = dNI;
             Apellido = apellido;
             Nombre = nombre;
-            Edad = edad;
+            FechaNacimiento = fechaNacimiento;
             Telefono = telefono;
             HistorialTratamientos = new Pila(); // Inicializa la pila
         }

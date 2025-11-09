@@ -12,7 +12,7 @@ namespace Clases
         public NodoLista nodoPrimero;
         public NodoLista nodoUltimo;
 
-        public void Insertar(Paciente dato)
+        public void InsertarAlFinal(Paciente dato)
         {
             NodoLista nodoNuevo = new NodoLista(dato);
             if (nodoPrimero == null)
@@ -80,7 +80,7 @@ namespace Clases
         //        }
         //    }
         //}
-        public Paciente Buscar(int dni)
+        public Paciente BuscarPorDNI(int dni)
         {
             NodoLista nodoTemporal = nodoPrimero;
 
@@ -94,6 +94,22 @@ namespace Clases
             }
 
             return null; // Si no se encuentra, devuelve null
+        }
+
+
+        // Devuelve todos los pacientes como lista para el dgv
+        public List<Paciente> ObtenerTodos()
+        {
+            List<Paciente> pacientes = new List<Paciente>();
+            NodoLista actual = nodoPrimero;
+
+            while (actual != null)
+            {
+                pacientes.Add(actual.Dato);
+                actual = actual.Siguiente;
+            }
+
+            return pacientes;
         }
     }
 }

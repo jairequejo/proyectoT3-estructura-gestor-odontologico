@@ -106,7 +106,7 @@ namespace PruebasConsola
             Console.Write("DNI: ");
             int dni = int.Parse(Console.ReadLine());
 
-            if (lista.Buscar(dni) != null)
+            if (lista.BuscarPorDNI(dni) != null)
             {
                 Console.WriteLine(" >< El paciente ya está registrado.");
                 return;
@@ -116,13 +116,13 @@ namespace PruebasConsola
             string apellido = Console.ReadLine();
             Console.Write("Nombre: ");
             string nombre = Console.ReadLine();
-            Console.Write("Edad: ");
-            int edad = int.Parse(Console.ReadLine());
+            Console.Write("Fecha de nacimiento (YYYY-MM-DD): ");
+            DateTime fechaNacimiento = DateTime.Parse(Console.ReadLine());
             Console.Write("Teléfono: ");
             int telefono = int.Parse(Console.ReadLine());
 
-            Paciente nuevo = new Paciente(dni, apellido, nombre, edad, telefono);
-            lista.Insertar(nuevo);
+            Paciente nuevo = new Paciente(dni, apellido, nombre, fechaNacimiento, telefono);
+            lista.InsertarAlFinal(nuevo);
             Console.WriteLine(" >>> Paciente registrado correctamente.");
         }
 
@@ -131,7 +131,7 @@ namespace PruebasConsola
             Console.Write("Ingrese el DNI del paciente a buscar: ");
             int dni = int.Parse(Console.ReadLine());
 
-            var paciente = lista.Buscar(dni);
+            var paciente = lista.BuscarPorDNI(dni);
             if (paciente != null)
             {
                 Console.WriteLine(">> Paciente encontrado:");
@@ -155,7 +155,7 @@ namespace PruebasConsola
                 Console.Write("DNI del Paciente: ");
                 dni = int.Parse(Console.ReadLine());
 
-                var pacienteExistente = listaPacientes.Buscar(dni);
+                var pacienteExistente = listaPacientes.BuscarPorDNI(dni);
 
                 if (pacienteExistente != null)
                 {
@@ -214,7 +214,7 @@ namespace PruebasConsola
             Console.Write("DNI del Paciente: ");
             int dni = int.Parse(Console.ReadLine());
 
-            var paciente = listaPacientes.Buscar(dni);
+            var paciente = listaPacientes.BuscarPorDNI(dni);
             if (paciente == null)
             {
                 Console.WriteLine(">< Paciente no encontrado. Regístrelo primero.");
@@ -241,7 +241,7 @@ namespace PruebasConsola
             Console.Write("Ingrese el DNI del paciente: ");
             int dni = int.Parse(Console.ReadLine());
 
-            var paciente = listaPacientes.Buscar(dni);
+            var paciente = listaPacientes.BuscarPorDNI(dni);
             if (paciente == null)
             {
                 Console.WriteLine(" >>> Paciente no encontrado.");
@@ -263,7 +263,7 @@ namespace PruebasConsola
             }
 
             Console.WriteLine($"Atendiendo cita: {cita.DNI} - {cita.Nombre} | Motivo: {cita.Motivo}");
-            var paciente = listaPacientes.Buscar(cita.DNI);
+            var paciente = listaPacientes.BuscarPorDNI(cita.DNI);
 
             if (paciente == null)
             {
@@ -272,13 +272,13 @@ namespace PruebasConsola
                 string apellido = Console.ReadLine();
                 Console.Write("Nombre: ");
                 string nombre = Console.ReadLine();
-                Console.Write("Edad: ");
-                int edad = int.Parse(Console.ReadLine());
+                Console.Write("Fecha de nacimiento (YYYY-MM-DD): ");
+                DateTime fechaNacimiento = DateTime.Parse(Console.ReadLine());
                 Console.Write("Teléfono: ");
                 int telefono = int.Parse(Console.ReadLine());
 
-                paciente = new Paciente(cita.DNI, apellido, nombre, edad, telefono);
-                listaPacientes.Insertar(paciente);
+                paciente = new Paciente(cita.DNI, apellido, nombre, fechaNacimiento, telefono);
+                listaPacientes.InsertarAlFinal(paciente);
                 Console.WriteLine(">> Paciente agregado a la lista.");
             }
 

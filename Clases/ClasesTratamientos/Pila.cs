@@ -71,6 +71,21 @@ namespace Clases
                 indice++;
             }
         }
+
+        // Devuelve todos los tratamientos como lista para el GUI
+        public List<Tratamiento> ObtenerTodos()
+        {
+            List<Tratamiento> tratamientos = new List<Tratamiento>();
+            NodoPila actual = Cima;
+
+            while (actual != null)
+            {
+                tratamientos.Add(actual.Dato);
+                actual = actual.Siguiente;
+            }
+
+            return tratamientos;
+        }
     }
 }
 

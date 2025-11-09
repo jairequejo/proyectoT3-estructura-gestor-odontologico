@@ -12,24 +12,30 @@ namespace GUI
 {
     public partial class FormMenuPrincipal : Form
     {
+        private SistemaClinico sistema; // ← instancia compartida
+
         public FormMenuPrincipal()
         {
             InitializeComponent();
+            sistema = new SistemaClinico(); // inicializa una sola vez
+            CargarUserControl(new GestorPacientesUserControl(sistema)); // pasa el sistema
         }
 
-        private void btnAgendaClientes_Click(object sender, EventArgs e)
+        private void CargarUserControl(UserControl control)
         {
-            // 1. Limpiar el contenido anterior del Panel
             pnlContenedor.Controls.Clear();
+            control.Dock = DockStyle.Fill;
+            pnlContenedor.Controls.Add(control);
+        }
 
-            // 2. Crear una instancia del nuevo User Control (la "página")
-            AgendaClientesUserControl agenda = new AgendaClientesUserControl();
+        private void linkCitas_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            CargarUserControl(new AgendaClientesUserControl(sistema));
+        }
 
-            // 3. Ajustar propiedades
-            agenda.Dock = DockStyle.Fill; // Hace que el control ocupe todo el Panel.
-
-            // 4. Agregar el User Control al Panel Contenedor
-            pnlContenedor.Controls.Add(agenda);
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            CargarUserControl(new GestorPacientesUserControl(sistema));
         }
     }
 }

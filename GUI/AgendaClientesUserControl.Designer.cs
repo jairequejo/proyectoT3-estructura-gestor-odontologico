@@ -30,7 +30,6 @@
         {
             this.label7 = new System.Windows.Forms.Label();
             this.btnPresentarCola = new System.Windows.Forms.Button();
-            this.btnGestorClientes = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -109,17 +108,6 @@
             this.btnPresentarCola.TabIndex = 14;
             this.btnPresentarCola.Text = "Presentar Cola";
             this.btnPresentarCola.UseVisualStyleBackColor = true;
-            this.btnPresentarCola.Click += new System.EventHandler(this.btnPresentarCola_Click);
-            // 
-            // btnGestorClientes
-            // 
-            this.btnGestorClientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGestorClientes.Location = new System.Drawing.Point(12, 11);
-            this.btnGestorClientes.Name = "btnGestorClientes";
-            this.btnGestorClientes.Size = new System.Drawing.Size(204, 34);
-            this.btnGestorClientes.TabIndex = 15;
-            this.btnGestorClientes.Text = "Lista Pacientes";
-            this.btnGestorClientes.UseVisualStyleBackColor = true;
             // 
             // groupBox5
             // 
@@ -584,7 +572,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox5);
-            this.Controls.Add(this.btnGestorClientes);
             this.Controls.Add(this.btnPresentarCola);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.groupBox1);
@@ -612,7 +599,6 @@
 
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnPresentarCola;
-        private System.Windows.Forms.Button btnGestorClientes;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.DateTimePicker dateTimePicker4;

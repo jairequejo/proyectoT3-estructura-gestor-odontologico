@@ -13,13 +13,13 @@ namespace GUI
 
     public partial class AgendaClientesUserControl : UserControl
     {
-        public AgendaClientesUserControl()
+        private SistemaClinico sistema;
+
+        public AgendaClientesUserControl(SistemaClinico sistema)
         {
             InitializeComponent();
-        }
-        private void btnPresentarCola_Click(object sender, EventArgs e)
-        {
-
+            this.sistema = sistema;
+            //ActualizarColaCitas();
         }
     }
 }
