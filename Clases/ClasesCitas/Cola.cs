@@ -29,8 +29,8 @@ namespace Clases
             }
 
             // Si la cita es más próxima que la primera
-            if (p.Fecha < Primero.Dato.Fecha ||
-               (p.Fecha == Primero.Dato.Fecha && p.EsPreferencial && !Primero.Dato.EsPreferencial))
+            if (p.Fecha.Date < Primero.Dato.Fecha.Date ||
+               (p.Fecha.Date == Primero.Dato.Fecha.Date && p.EsPreferencial && !Primero.Dato.EsPreferencial))
             {
                 nuevo.Siguiente = Primero;
                 Primero = nuevo;
@@ -44,11 +44,11 @@ namespace Clases
                 Cita siguiente = actual.Siguiente.Dato;
 
                 // Si la nueva cita es antes que la siguiente
-                if (p.Fecha < siguiente.Fecha)
+                if (p.Fecha.Date < siguiente.Fecha.Date)
                     break;
 
                 // Si es el mismo día pero preferencial y el siguiente no lo es
-                if (p.Fecha == siguiente.Fecha && p.EsPreferencial && !siguiente.EsPreferencial)
+                if (p.Fecha.Date == siguiente.Fecha.Date && p.EsPreferencial && !siguiente.EsPreferencial)
                     break;
 
                 actual = actual.Siguiente;
@@ -141,5 +141,37 @@ namespace Clases
             }
         }
 
+        public List<Cita> ObtenerTodos()
+        {
+            List<Cita> citas = new List<Cita>();
+            NodoCola actual = Primero;
+            while (actual != null)
+            {
+                citas.Add(actual.Dato);
+                actual = actual.Siguiente;
+            }
+            return citas;
+        }
+
+        public List<Cita> ObtenerCitasPorFecha(DateTime fecha)
+        {
+            List<Cita> citasFiltradas = new List<Cita>();
+            NodoCola actual = Primero;
+
+            while (actual != null)
+            {
+                if (actual.Dato.Fecha.Date == fecha.Date)
+                {
+                    citasFiltradas.Add(actual.Dato);
+                }
+                // Como la cola está ordenada por fecha, si ya pasamos la fecha, podemos parar
+                else if (actual.Dato.Fecha.Date > fecha.Date)
+                {
+                    break;
+                }
+                actual = actual.Siguiente;
+            }
+            return citasFiltradas;
+        }
     }
 }

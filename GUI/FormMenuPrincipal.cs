@@ -18,7 +18,7 @@ namespace GUI
         {
             InitializeComponent();
             sistema = new SistemaClinico(); // inicializa una sola vez
-            CargarUserControl(new GestorPacientesUserControl(sistema)); // pasa el sistema
+            CargarUserControl(new AgendaClientesUserControl(sistema)); // pasa el sistema
         }
 
         private void CargarUserControl(UserControl control)

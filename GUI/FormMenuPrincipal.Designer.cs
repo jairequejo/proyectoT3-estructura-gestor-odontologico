@@ -58,7 +58,7 @@
             this.linkGestorPaciente.AutoSize = true;
             this.linkGestorPaciente.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkGestorPaciente.LinkColor = System.Drawing.Color.White;
-            this.linkGestorPaciente.Location = new System.Drawing.Point(1179, 7);
+            this.linkGestorPaciente.Location = new System.Drawing.Point(1229, 7);
             this.linkGestorPaciente.Name = "linkGestorPaciente";
             this.linkGestorPaciente.Size = new System.Drawing.Size(91, 18);
             this.linkGestorPaciente.TabIndex = 14;
@@ -72,7 +72,7 @@
             this.linkCitas.AutoSize = true;
             this.linkCitas.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkCitas.LinkColor = System.Drawing.Color.White;
-            this.linkCitas.Location = new System.Drawing.Point(1278, 7);
+            this.linkCitas.Location = new System.Drawing.Point(1161, 7);
             this.linkCitas.Name = "linkCitas";
             this.linkCitas.Size = new System.Drawing.Size(50, 18);
             this.linkCitas.TabIndex = 15;
@@ -85,7 +85,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.ClientSize = new System.Drawing.Size(1352, 686);
+            this.ClientSize = new System.Drawing.Size(1352, 692);
             this.Controls.Add(this.linkCitas);
             this.Controls.Add(this.linkGestorPaciente);
             this.Controls.Add(this.lblTitulo);

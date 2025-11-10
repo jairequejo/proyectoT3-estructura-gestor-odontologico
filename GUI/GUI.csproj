@@ -58,6 +58,12 @@
     <Compile Include="FormMenuPrincipal.Designer.cs">
       <DependentUpon>FormMenuPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormRegistrarPacienteRapido.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRegistrarPacienteRapido.Designer.cs">
+      <DependentUpon>FormRegistrarPacienteRapido.cs</DependentUpon>
+    </Compile>
     <Compile Include="GestorPacientesUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -72,6 +78,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMenuPrincipal.resx">
       <DependentUpon>FormMenuPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRegistrarPacienteRapido.resx">
+      <DependentUpon>FormRegistrarPacienteRapido.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GestorPacientesUserControl.resx">
       <DependentUpon>GestorPacientesUserControl.cs</DependentUpon>

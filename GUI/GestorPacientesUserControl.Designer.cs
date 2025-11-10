@@ -200,7 +200,7 @@
             this.groupBox3.Controls.Add(this.label3);
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(0, 13);
+            this.groupBox3.Location = new System.Drawing.Point(7, 13);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(194, 305);
             this.groupBox3.TabIndex = 7;
@@ -209,12 +209,15 @@
             // 
             // btnRegistrarPaciente
             // 
+            this.btnRegistrarPaciente.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.btnRegistrarPaciente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegistrarPaciente.ForeColor = System.Drawing.Color.White;
             this.btnRegistrarPaciente.Location = new System.Drawing.Point(9, 268);
             this.btnRegistrarPaciente.Name = "btnRegistrarPaciente";
             this.btnRegistrarPaciente.Size = new System.Drawing.Size(163, 25);
             this.btnRegistrarPaciente.TabIndex = 4;
             this.btnRegistrarPaciente.Text = "Registrar Paciente";
-            this.btnRegistrarPaciente.UseVisualStyleBackColor = true;
+            this.btnRegistrarPaciente.UseVisualStyleBackColor = false;
             this.btnRegistrarPaciente.Click += new System.EventHandler(this.btnRegistrarPaciente_Click);
             // 
             // dtpFNacimiento
@@ -336,12 +339,15 @@
             // 
             // btnRegistrarTratamiento
             // 
+            this.btnRegistrarTratamiento.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.btnRegistrarTratamiento.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegistrarTratamiento.ForeColor = System.Drawing.Color.White;
             this.btnRegistrarTratamiento.Location = new System.Drawing.Point(17, 291);
             this.btnRegistrarTratamiento.Name = "btnRegistrarTratamiento";
-            this.btnRegistrarTratamiento.Size = new System.Drawing.Size(159, 23);
+            this.btnRegistrarTratamiento.Size = new System.Drawing.Size(159, 25);
             this.btnRegistrarTratamiento.TabIndex = 9;
             this.btnRegistrarTratamiento.Text = "Registrar Tratamiento";
-            this.btnRegistrarTratamiento.UseVisualStyleBackColor = true;
+            this.btnRegistrarTratamiento.UseVisualStyleBackColor = false;
             this.btnRegistrarTratamiento.Click += new System.EventHandler(this.btnRegistrarTratamiento_Click);
             // 
             // dtpFechaTratamiento
@@ -411,11 +417,11 @@
             // label7
             // 
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(477, 13);
+            this.label7.Location = new System.Drawing.Point(506, 15);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(433, 38);
             this.label7.TabIndex = 12;
-            this.label7.Text = "> GESTOR DE PACIENTES <";
+            this.label7.Text = "GESTOR DE PACIENTES";
             // 
             // groupBox1
             // 
